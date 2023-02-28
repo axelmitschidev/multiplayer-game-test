@@ -72,6 +72,7 @@ document.body.addEventListener('keyup', (e) => {
 })
 
 socket.on('food position', (food_server) => {
+  console.log('oui')
   food = food_server
 })
 
