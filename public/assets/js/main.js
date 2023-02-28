@@ -132,6 +132,8 @@ socket.on('users positions', (users_server) => {
     user.y < food.y + 5
   ) {
     socket.emit('food eat', user)
+    user.score++
+    document.getElementById('my_score').textContent = user.score
   }
 
   update_users_list()
@@ -143,7 +145,7 @@ function update_users_list() {
   users.forEach((u) => {
     const li_element = document.createElement('li')
     li_element.style.color = u.color
-    li_element.textContent = u.username
+    li_element.textContent = u.username + ' score: ' + u.score
     users_list_element.appendChild(li_element)
   })
 }
