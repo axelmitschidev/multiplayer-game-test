@@ -93,7 +93,7 @@ let last_timestamp = 0
 function game_loop(timestamp) {
   frame_duration = timestamp - last_timestamp
   last_timestamp = timestamp
-  console.log(1 / frame_duration)
+  console.log(frame_duration)
   ctx.clearRect(0, 0, canvas_element.width, canvas_element.height)
   window.requestAnimationFrame(game_loop)
 
