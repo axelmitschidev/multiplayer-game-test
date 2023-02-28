@@ -51,6 +51,6 @@ setInterval(() => {
   io.send('food position', food)
 }, 1000)
 
-server.listen(3000, () => {
-  console.log('listening on http://localhost:3000')
+server.listen(8888, () => {
+  console.log('listening on http://localhost:8888')
 })
