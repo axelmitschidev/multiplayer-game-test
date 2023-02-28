@@ -9,8 +9,6 @@ let food = {
 
 socket.on('connect', () => (socket_id = socket.id))
 
-let speed = 3
-
 const canvas_element = document.getElementById('canvas')
 canvas_element.width = 800
 canvas_element.height = 800
@@ -93,22 +91,22 @@ socket.on('users positions', (users_server) => {
   window.requestAnimationFrame(game_loop)
 
   if (user_move_top && user.y > 0) {
-    user.y -= speed
+    user.y -= 2
     socket.emit('user move', user)
   }
 
   if (user_move_right && user.x < canvas_element.width - 10) {
-    user.x += speed
+    user.x += 2
     socket.emit('user move', user)
   }
 
   if (user_move_bottom && user.y < canvas_element.height - 10) {
-    user.y += speed
+    user.y += 2
     socket.emit('user move', user)
   }
 
   if (user_move_left && user.x > 0) {
-    user.x -= speed
+    user.x -= 2
     socket.emit('user move', user)
   }
 
