@@ -1,5 +1,7 @@
 socket = io()
 
+let food_eated = false
+
 let socket_id = null
 
 let food = {
@@ -72,6 +74,7 @@ document.body.addEventListener('keyup', (e) => {
 
 socket.on('food position', (food_server) => {
   food = food_server
+  food_eated = false
 })
 
 socket.on('users positions', (users_server) => {
@@ -84,7 +87,11 @@ socket.on('users positions', (users_server) => {
 
   users = new_users
 })
-;(function game_loop() {
+let last_timestamp = 0
+;(function game_loop(timestamp) {
+  frame_duration = timestamp - last_timetamp
+  last_timestamp = timestamp
+  console.log(1 / frame_duration)
   ctx.clearRect(0, 0, canvas_element.width, canvas_element.height)
   window.requestAnimationFrame(game_loop)
 
@@ -125,12 +132,14 @@ socket.on('users positions', (users_server) => {
     user.x + 10 > food.x - 5 &&
     user.x < food.x + 5 &&
     user.y + 10 > food.y - 5 &&
-    user.y < food.y + 5
+    user.y < food.y + 5 &&
+    !food_eated
   ) {
     socket.emit('food eat', user)
     food.x = -100
     food.y = -100
     user.score++
+    food_eated = true
     document.getElementById('my_score').textContent = user.score
   }
 
