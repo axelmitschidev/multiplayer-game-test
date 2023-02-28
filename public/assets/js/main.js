@@ -117,6 +117,7 @@ socket.on('users positions', (users_server) => {
   ctx.fillStyle = user.color
   ctx.fillRect(user.x, user.y, 10, 10)
 
+  ctx.fillStyle = '#000'
   ctx.beginPath()
   ctx.arc(food.x, food.y, 10, 0, Math.PI * 2)
   ctx.fill()
