@@ -136,11 +136,12 @@ function game_loop(timestamp) {
     !food_eated
   ) {
     food_eated = true
+    food.x = -10
+    food.y = -10
     socket.emit('food eat', user)
     user.score++
     document.getElementById('my_score').textContent = user.score
   }
-
   socket.emit('food position')
 
   update_users_list()
