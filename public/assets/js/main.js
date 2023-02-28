@@ -126,9 +126,9 @@ socket.on('users positions', (users_server) => {
   ctx.fill()
 
   if (
-    user.x > food.x - 5 &&
+    user.x + 10 > food.x - 5 &&
     user.x < food.x + 5 &&
-    user.y > food.y - 5 &&
+    user.y + 10 > food.y - 5 &&
     user.y < food.y + 5
   ) {
     socket.emit('food eat', user)
