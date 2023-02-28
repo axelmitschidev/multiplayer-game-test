@@ -4,8 +4,8 @@ let socket_id = null
 socket.on('connect', () => (socket_id = socket.id))
 
 const canvas_element = document.getElementById('canvas')
-canvas_element.width = 400
-canvas_element.height = 400
+canvas_element.width = 800
+canvas_element.height = 800
 
 const ctx = canvas_element.getContext('2d')
 
@@ -74,7 +74,7 @@ socket.on('users positions', (users_server) => {
   users = new_users
 })
 ;(function game_loop() {
-  ctx.clearRect(0, 0, canvas_element.width, canvas_element.height)
+  //ctx.clearRect(0, 0, canvas_element.width, canvas_element.height)
   window.requestAnimationFrame(game_loop)
 
   if (user_move_top) {
