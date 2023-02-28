@@ -72,9 +72,10 @@ document.body.addEventListener('keyup', (e) => {
 })
 
 socket.on('food position', (food_server) => {
-  console.log('oui')
   food = food_server
 })
+
+setInterval(() => socket.emit('food position'), 100)
 
 socket.on('users positions', (users_server) => {
   let new_users = [...users_server]

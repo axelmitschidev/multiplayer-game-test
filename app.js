@@ -42,13 +42,13 @@ io.on('connection', (socket) => {
     }
     socket.broadcast.emit('users positions', users)
   })
+
+  socket.on('food position', socket.emit('food position', food))
 })
 
 setInterval(() => {
   food.x = Math.random() * 800
   food.y = Math.random() * 800
-
-  io.send('food position', food)
 }, 1000)
 
 server.listen(8888, () => {
