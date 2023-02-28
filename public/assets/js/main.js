@@ -21,9 +21,7 @@ const user = {
   username: prompt('Enter your user name :'),
   x: canvas_element.width / 2,
   y: canvas_element.height / 2,
-  color: `rgb(${Math.random() * 256}, ${Math.random() * 256}, ${
-    Math.random() * 256
-  })`,
+  color: prompt('Enter your color (in HEX Example: `#F43215`) :'),
   score: 0,
 }
 
