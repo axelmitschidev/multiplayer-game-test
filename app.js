@@ -49,7 +49,7 @@ io.on('connection', (socket) => {
   })
 
   socket.on('food position', () => {
-    socket.broadcast.emit('food position', food)
+    socket.emit('food position', food)
   })
 
   socket.on('food eat', () => {
