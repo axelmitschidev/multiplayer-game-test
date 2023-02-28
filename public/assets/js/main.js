@@ -74,8 +74,6 @@ socket.on('food position', (food_server) => {
   food = food_server
 })
 
-setInterval(() => socket.emit('food position'), 1)
-
 socket.on('users positions', (users_server) => {
   let new_users = [...users_server]
 
@@ -135,6 +133,8 @@ socket.on('users positions', (users_server) => {
     user.score++
     document.getElementById('my_score').textContent = user.score
   }
+
+  socket.emit('food position')
 
   update_users_list()
 })()
