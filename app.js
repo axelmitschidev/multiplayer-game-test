@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const http = require('http')
 const path = require('path')
+const { emit } = require('process')
 const server = http.createServer(app)
 const { Server } = require('socket.io')
 const io = new Server(server)
@@ -48,7 +49,7 @@ io.on('connection', (socket) => {
   })
 
   socket.on('food position', () => {
-    socket.broadcast('food position', food)
+    socket.broadcast.emit('food position', food)
   })
 
   socket.on('food eat', () => {
