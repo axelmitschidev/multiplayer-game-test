@@ -44,12 +44,21 @@ io.on('connection', (socket) => {
   })
 
   socket.on('food position', () => socket.emit('food position', food))
+
+  socket.on('food eat', () => {
+    const index = users.findIndex((u) => u.id === socket.id)
+    if (index !== -1) {
+      users.score++
+      food.x = Math.random() * 800
+      food.y = Math.random() * 800
+    }
+  })
 })
 
 setInterval(() => {
   food.x = Math.random() * 800
   food.y = Math.random() * 800
-}, 1000)
+}, 10000)
 
 server.listen(8888, () => {
   console.log('listening on http://localhost:8888')

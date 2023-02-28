@@ -24,6 +24,7 @@ const user = {
   color: `rgb(${Math.random() * 256}, ${Math.random() * 256}, ${
     Math.random() * 256
   })`,
+  score: 0,
 }
 
 let users = []
@@ -75,7 +76,7 @@ socket.on('food position', (food_server) => {
   food = food_server
 })
 
-setInterval(() => socket.emit('food position'), 100)
+setInterval(() => socket.emit('food position'), 30)
 
 socket.on('users positions', (users_server) => {
   let new_users = [...users_server]
@@ -121,8 +122,17 @@ socket.on('users positions', (users_server) => {
 
   ctx.fillStyle = '#000'
   ctx.beginPath()
-  ctx.arc(food.x, food.y, 10, 0, Math.PI * 2)
+  ctx.arc(food.x, food.y, 5, 0, Math.PI * 2)
   ctx.fill()
+
+  if (
+    user.x > food.x - 5 &&
+    user.x < food.x + 5 &&
+    user.y > food.y - 5 &&
+    user.y < food.y + 5
+  ) {
+    socket.emit('food eat', user)
+  }
 
   update_users_list()
 })()
