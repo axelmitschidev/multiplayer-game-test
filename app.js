@@ -48,10 +48,6 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('users positions', users)
   })
 
-  socket.on('food position', () => {
-    socket.emit('food position', food)
-  })
-
   socket.on('food eat', () => {
     const index = users.findIndex((u) => u.id === socket.id)
     if (index !== -1) {
@@ -59,6 +55,10 @@ io.on('connection', (socket) => {
       food.x = Math.random() * 800
       food.y = Math.random() * 800
     }
+  })
+
+  socket.on('food position', () => {
+    socket.emit('food position', food)
   })
 })
 
