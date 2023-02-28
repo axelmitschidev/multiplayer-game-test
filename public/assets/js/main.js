@@ -96,22 +96,22 @@ function game_loop(timestamp) {
   window.requestAnimationFrame(game_loop)
 
   if (user_move_top && user.y > 0) {
-    user.y -= frame_duration / 7
+    user.y -= frame_duration / 5
     socket.emit('user move', user)
   }
 
   if (user_move_right && user.x < canvas_element.width - 10) {
-    user.x += frame_duration / 7
+    user.x += frame_duration / 5
     socket.emit('user move', user)
   }
 
   if (user_move_bottom && user.y < canvas_element.height - 10) {
-    user.y += frame_duration / 7
+    user.y += frame_duration / 5
     socket.emit('user move', user)
   }
 
   if (user_move_left && user.x > 0) {
-    user.x -= frame_duration / 7
+    user.x -= frame_duration / 5
     socket.emit('user move', user)
   }
 
