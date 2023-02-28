@@ -87,9 +87,11 @@ socket.on('users positions', (users_server) => {
 
   users = new_users
 })
+
 let last_timestamp = 0
+
 function game_loop(timestamp) {
-  frame_duration = timestamp - last_timetamp
+  frame_duration = timestamp - last_timestamp
   last_timestamp = timestamp
   console.log(1 / frame_duration)
   ctx.clearRect(0, 0, canvas_element.width, canvas_element.height)
@@ -147,6 +149,7 @@ function game_loop(timestamp) {
 
   update_users_list()
 }
+
 game_loop()
 
 function update_users_list() {
