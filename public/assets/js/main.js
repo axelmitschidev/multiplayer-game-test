@@ -3,8 +3,8 @@ socket = io()
 let socket_id = null
 
 let food = {
-  x: -10,
-  y: -10,
+  x: -100,
+  y: -100,
 }
 
 socket.on('connect', () => (socket_id = socket.id))
@@ -132,6 +132,8 @@ socket.on('users positions', (users_server) => {
     user.y < food.y + 5
   ) {
     socket.emit('food eat', user)
+    food.x = -100
+    food.y = -100
     user.score++
     document.getElementById('my_score').textContent = user.score
   }
