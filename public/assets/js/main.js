@@ -3,6 +3,8 @@ socket = io()
 let socket_id = null
 socket.on('connect', () => (socket_id = socket.id))
 
+let speed = 1
+
 const canvas_element = document.getElementById('canvas')
 canvas_element.width = 800
 canvas_element.height = 800
@@ -78,22 +80,22 @@ socket.on('users positions', (users_server) => {
   window.requestAnimationFrame(game_loop)
 
   if (user_move_top && user.y > 0) {
-    user.y--
+    user.y -= speed
     socket.emit('user move', user)
   }
 
   if (user_move_right && user.x < canvas_element.width - 10) {
-    user.x++
+    user.x += speed
     socket.emit('user move', user)
   }
 
   if (user_move_bottom && user.y < canvas_element.height - 10) {
-    user.y++
+    user.y += speed
     socket.emit('user move', user)
   }
 
   if (user_move_left && user.x > 0) {
-    user.x--
+    user.x -= speed
     socket.emit('user move', user)
   }
 
