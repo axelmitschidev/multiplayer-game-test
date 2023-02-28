@@ -43,7 +43,7 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('users positions', users)
   })
 
-  socket.on('food position', socket.emit('food position', food))
+  socket.on('food position', () => socket.emit('food position', food))
 })
 
 setInterval(() => {
