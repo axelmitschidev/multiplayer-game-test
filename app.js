@@ -48,7 +48,7 @@ io.on('connection', (socket) => {
   })
 
   socket.on('food position', () => {
-    socket.emit('food position', food)
+    socket.broadcast('food position', food)
   })
 
   socket.on('food eat', () => {
