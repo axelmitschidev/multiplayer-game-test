@@ -77,31 +77,24 @@ socket.on('users positions', (users_server) => {
   //ctx.clearRect(0, 0, canvas_element.width, canvas_element.height)
   window.requestAnimationFrame(game_loop)
 
-  if (
-    user.x > 30 &&
-    user.x < canvas_element.width - 30 &&
-    user.y > 30 &&
-    user.y < canvas_element.height - 30
-  ) {
-    if (user_move_top) {
-      user.y--
-      socket.emit('user move', user)
-    }
+  if (user_move_top && user.y > 0) {
+    user.y--
+    socket.emit('user move', user)
+  }
 
-    if (user_move_right) {
-      user.x++
-      socket.emit('user move', user)
-    }
+  if (user_move_right && user.x < canvas_element.width) {
+    user.x++
+    socket.emit('user move', user)
+  }
 
-    if (user_move_bottom) {
-      user.y++
-      socket.emit('user move', user)
-    }
+  if (user_move_bottom && user.y < canvas_element.height) {
+    user.y++
+    socket.emit('user move', user)
+  }
 
-    if (user_move_left) {
-      user.x--
-      socket.emit('user move', user)
-    }
+  if (user_move_left && user.x > 0) {
+    user.x--
+    socket.emit('user move', user)
   }
 
   users.forEach((u) => {
