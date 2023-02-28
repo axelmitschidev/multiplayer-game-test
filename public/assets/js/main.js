@@ -82,12 +82,12 @@ socket.on('users positions', (users_server) => {
     socket.emit('user move', user)
   }
 
-  if (user_move_right && user.x < canvas_element.width) {
+  if (user_move_right && user.x < canvas_element.width - 10) {
     user.x++
     socket.emit('user move', user)
   }
 
-  if (user_move_bottom && user.y < canvas_element.height) {
+  if (user_move_bottom && user.y < canvas_element.height - 10) {
     user.y++
     socket.emit('user move', user)
   }
