@@ -15,8 +15,8 @@ app.get('/', (req, res) => {
 let users = []
 
 let food = {
-  x: 0,
-  y: 0,
+  x: Math.random() * 800,
+  y: Math.random() * 800,
 }
 
 io.on('connection', (socket) => {
