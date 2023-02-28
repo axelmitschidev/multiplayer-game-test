@@ -48,7 +48,7 @@ io.on('connection', (socket) => {
   })
 
   socket.on('food position', () => {
-    socket.broadcast.emit('food position', food)
+    io.send('food position', food)
   })
 
   socket.on('food eat', () => {
@@ -57,8 +57,7 @@ io.on('connection', (socket) => {
       users.score++
       food.x = Math.random() * 800
       food.y = Math.random() * 800
-      socket.emit('food position', food)
-      socket.broadcast.emit('food position', food)
+      io.send('food position', food)
     }
   })
 })
