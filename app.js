@@ -14,6 +14,11 @@ app.get('/', (req, res) => {
 
 let users = []
 
+let food = {
+  x: 0,
+  y: 0,
+}
+
 io.on('connection', (socket) => {
   socket.on('init', (user) => {
     users.push({ ...user, id: socket.id })
@@ -38,6 +43,13 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('users positions', users)
   })
 })
+
+setInterval(() => {
+  food.x = Math.random() * 800
+  food.y = Math.random() * 800
+
+  io.send('food position', food)
+}, 1000)
 
 server.listen(3000, () => {
   console.log('listening on http://localhost:3000')

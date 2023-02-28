@@ -1,6 +1,12 @@
 socket = io()
 
 let socket_id = null
+
+let food = {
+  x: -10,
+  y: -10,
+}
+
 socket.on('connect', () => (socket_id = socket.id))
 
 let speed = 1
@@ -65,6 +71,10 @@ document.body.addEventListener('keyup', (e) => {
   }
 })
 
+socket.on('food position', (food_server) => {
+  food = food_server
+})
+
 socket.on('users positions', (users_server) => {
   let new_users = [...users_server]
 
@@ -76,7 +86,7 @@ socket.on('users positions', (users_server) => {
   users = new_users
 })
 ;(function game_loop() {
-  //ctx.clearRect(0, 0, canvas_element.width, canvas_element.height)
+  ctx.clearRect(0, 0, canvas_element.width, canvas_element.height)
   window.requestAnimationFrame(game_loop)
 
   if (user_move_top && user.y > 0) {
@@ -106,6 +116,10 @@ socket.on('users positions', (users_server) => {
 
   ctx.fillStyle = user.color
   ctx.fillRect(user.x, user.y, 10, 10)
+
+  ctx.beginPath()
+  ctx.arc(food.x, food.y, 10, 0, Math.PI * 2)
+  ctx.fill()
 
   update_users_list()
 })()
