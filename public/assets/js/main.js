@@ -4,6 +4,7 @@ let socket_id = null
 socket.on('connect', () => (socket_id = socket.id))
 
 let speed = 1
+let size = 10
 
 const canvas_element = document.getElementById('canvas')
 canvas_element.width = 800
@@ -84,12 +85,12 @@ socket.on('users positions', (users_server) => {
     socket.emit('user move', user)
   }
 
-  if (user_move_right && user.x < canvas_element.width - 10) {
+  if (user_move_right && user.x < canvas_element.width - size) {
     user.x += speed
     socket.emit('user move', user)
   }
 
-  if (user_move_bottom && user.y < canvas_element.height - 10) {
+  if (user_move_bottom && user.y < canvas_element.height - size) {
     user.y += speed
     socket.emit('user move', user)
   }
@@ -101,11 +102,11 @@ socket.on('users positions', (users_server) => {
 
   users.forEach((u) => {
     ctx.fillStyle = u.color
-    ctx.fillRect(u.x, u.y, 10, 10)
+    ctx.fillRect(u.x, u.y, 10, size)
   })
 
   ctx.fillStyle = user.color
-  ctx.fillRect(user.x, user.y, 10, 10)
+  ctx.fillRect(user.x, user.y, 10, size)
 
   update_users_list()
 })()
