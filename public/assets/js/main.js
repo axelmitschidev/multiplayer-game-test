@@ -135,11 +135,9 @@ function game_loop(timestamp) {
     user.y < food.y + 5 &&
     !food_eated
   ) {
-    socket.emit('food eat', user)
-    food.x = -100
-    food.y = -100
-    user.score++
     food_eated = true
+    socket.emit('food eat', user)
+    user.score++
     document.getElementById('my_score').textContent = user.score
   }
 
