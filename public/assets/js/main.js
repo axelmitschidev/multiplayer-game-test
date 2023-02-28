@@ -78,10 +78,10 @@ socket.on('users positions', (users_server) => {
   window.requestAnimationFrame(game_loop)
 
   if (
-    user.x > 0 &&
-    user.x < canvas_element.width &&
-    user.y > 0 &&
-    user.y < canvas_element.height
+    user.x > 30 &&
+    user.x < canvas_element.width - 30 &&
+    user.y > 30 &&
+    user.y < canvas_element.height - 30
   ) {
     if (user_move_top) {
       user.y--
