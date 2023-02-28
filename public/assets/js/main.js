@@ -145,7 +145,7 @@ function update_users_list() {
   users.forEach((u) => {
     const li_element = document.createElement('li')
     li_element.style.color = u.color
-    li_element.textContent = u.username + ' score: ' + u.score
+    li_element.textContent = u.username + ' | score: ' + u.score
     users_list_element.appendChild(li_element)
   })
 }
