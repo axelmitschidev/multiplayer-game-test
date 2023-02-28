@@ -140,7 +140,7 @@ function game_loop(timestamp) {
     user.score++
     document.getElementById('my_score').textContent = user.score
   }
-  socket.emit('food position')
+  if (!food_eated) socket.emit('food position')
 
   update_users_list()
   last_timestamp = timestamp
