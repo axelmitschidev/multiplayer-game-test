@@ -9,7 +9,7 @@ let food = {
 
 socket.on('connect', () => (socket_id = socket.id))
 
-let speed = 1
+let speed = 3
 
 const canvas_element = document.getElementById('canvas')
 canvas_element.width = 800
