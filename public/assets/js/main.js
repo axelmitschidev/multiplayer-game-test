@@ -92,28 +92,26 @@ let last_timestamp = 0
 
 function game_loop(timestamp) {
   frame_duration = timestamp - last_timestamp
-  last_timestamp = timestamp
-  console.log(frame_duration)
   ctx.clearRect(0, 0, canvas_element.width, canvas_element.height)
   window.requestAnimationFrame(game_loop)
 
   if (user_move_top && user.y > 0) {
-    user.y -= 2
+    user.y -= frame_duration / 7
     socket.emit('user move', user)
   }
 
   if (user_move_right && user.x < canvas_element.width - 10) {
-    user.x += 2
+    user.x += frame_duration / 7
     socket.emit('user move', user)
   }
 
   if (user_move_bottom && user.y < canvas_element.height - 10) {
-    user.y += 2
+    user.y += frame_duration / 7
     socket.emit('user move', user)
   }
 
   if (user_move_left && user.x > 0) {
-    user.x -= 2
+    user.x -= frame_duration / 7
     socket.emit('user move', user)
   }
 
@@ -148,6 +146,7 @@ function game_loop(timestamp) {
   socket.emit('food position')
 
   update_users_list()
+  last_timestamp = timestamp
 }
 
 game_loop()
