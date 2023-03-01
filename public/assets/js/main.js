@@ -91,7 +91,7 @@ let last_timestamp = 0
 
 function game_loop(timestamp) {
   frame_duration = timestamp - last_timestamp
-  ctx.clearRect(0, 0, canvas_element.width, canvas_element.height)
+  //ctx.clearRect(0, 0, canvas_element.width, canvas_element.height)
   window.requestAnimationFrame(game_loop)
 
   if (user_move_top && user.y > 0) {
