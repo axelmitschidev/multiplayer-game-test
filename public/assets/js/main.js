@@ -97,12 +97,12 @@ function game_loop(timestamp) {
     socket.emit('user move', user)
   }
 
-  if (user_move_right && user.x < canvas_element.width - 15) {
+  if (user_move_right && user.x < canvas_element.width - 12) {
     user.x += frame_duration / 5
     socket.emit('user move', user)
   }
 
-  if (user_move_bottom && user.y < canvas_element.height - 15) {
+  if (user_move_bottom && user.y < canvas_element.height - 12) {
     user.y += frame_duration / 5
     socket.emit('user move', user)
   }
