@@ -40,10 +40,10 @@ socket.on('users positions', (users_server) => {
     ctx.fillRect(u.x, u.y, 10, 10)
   })
 
-  ctx.fillStyle = '#000'
+  ctx.strokeStyle = '#000'
   ctx.beginPath()
   ctx.arc(food.x, food.y, 5, 0, Math.PI * 2)
-  ctx.fill()
+  ctx.stroke()
 
   update_users_list()
 })()
@@ -51,10 +51,12 @@ socket.on('users positions', (users_server) => {
 function update_users_list() {
   const users_list_element = document.getElementById('users_list')
   users_list_element.innerHTML = ''
-  users.forEach((u) => {
-    const li_element = document.createElement('li')
-    li_element.style.color = u.color
-    li_element.textContent = u.username + ' | score: ' + u.score
-    users_list_element.appendChild(li_element)
-  })
+  users
+    .sort((a, b) => b.score - a.score)
+    .forEach((u) => {
+      const li_element = document.createElement('li')
+      li_element.style.color = u.color
+      li_element.textContent = u.username + ' | score: ' + u.score
+      users_list_element.appendChild(li_element)
+    })
 }
