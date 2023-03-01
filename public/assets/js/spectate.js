@@ -32,7 +32,7 @@ socket.on('users positions', (users_server) => {
   users = new_users
 })
 ;(function game_loop() {
-  ctx.clearRect(0, 0, canvas_element.width, canvas_element.height)
+  //ctx.clearRect(0, 0, canvas_element.width, canvas_element.height)
   window.requestAnimationFrame(game_loop)
 
   users.forEach((u) => {
