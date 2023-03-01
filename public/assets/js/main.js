@@ -120,10 +120,10 @@ function game_loop(timestamp) {
   ctx.fillStyle = user.color
   ctx.fillRect(user.x, user.y, 10, 10)
 
-  ctx.fillStyle = '#000'
+  ctx.strokeStyle = '#000'
   ctx.beginPath()
   ctx.arc(food.x, food.y, 5, 0, Math.PI * 2)
-  ctx.fill()
+  ctx.stroke()
 
   if (
     user.x + 10 > food.x - 5 &&
