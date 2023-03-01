@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const http = require('http')
 const path = require('path')
-const { emit } = require('process')
 const server = http.createServer(app)
 const { Server } = require('socket.io')
 const io = new Server(server)
@@ -25,6 +24,8 @@ let food = {
 }
 
 io.on('connection', (socket) => {
+  socket.emit('food position', food)
+
   socket.on('init', (user) => {
     users.push({ ...user, id: socket.id })
     socket.broadcast.emit('users positions', users)
@@ -36,7 +37,6 @@ io.on('connection', (socket) => {
     if (index !== -1) {
       users[index] = { ...user, id: socket.id }
     }
-
     socket.broadcast.emit('users positions', users)
   })
 
@@ -54,18 +54,11 @@ io.on('connection', (socket) => {
       users.score++
       food.x = Math.random() * 800
       food.y = Math.random() * 800
+      socket.emit('food position', food)
+      socket.broadcast.emit('food position', food)
     }
   })
-
-  socket.on('food position', () => {
-    socket.emit('food position', food)
-  })
 })
-
-setInterval(() => {
-  food.x = Math.random() * 800
-  food.y = Math.random() * 800
-}, 10000)
 
 server.listen(8888, () => {
   console.log('listening on http://localhost:8888')

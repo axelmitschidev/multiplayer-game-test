@@ -1,12 +1,11 @@
 socket = io()
 
-let food_eated = false
-
 let socket_id = null
 
 let food = {
   x: -100,
   y: -100,
+  eated: false,
 }
 
 socket.on('connect', () => (socket_id = socket.id))
@@ -72,7 +71,7 @@ document.body.addEventListener('keyup', (e) => {
 
 socket.on('food position', (food_server) => {
   food = food_server
-  food_eated = false
+  food.eated = false
 })
 
 socket.on('users positions', (users_server) => {
@@ -131,16 +130,15 @@ function game_loop(timestamp) {
     user.x < food.x + 5 &&
     user.y + 10 > food.y - 5 &&
     user.y < food.y + 5 &&
-    !food_eated
+    !food.eated
   ) {
-    food_eated = true
+    food.eated = true
     food.x = -10
     food.y = -10
     socket.emit('food eat', user)
     user.score++
     document.getElementById('my_score').textContent = user.score
   }
-  socket.emit('food position')
 
   update_users_list()
   last_timestamp = timestamp
