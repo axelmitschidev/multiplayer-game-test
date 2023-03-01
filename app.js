@@ -25,11 +25,11 @@ let food = {
 
 io.on('connection', (socket) => {
   socket.emit('food position', food)
+  socket.emit('users positions', users)
+  socket.broadcast.emit('users positions', users)
 
   socket.on('init', (user) => {
     users.push({ ...user, id: socket.id })
-    socket.broadcast.emit('users positions', users)
-    socket.emit('users positions', users)
   })
 
   socket.on('user move', (user) => {
