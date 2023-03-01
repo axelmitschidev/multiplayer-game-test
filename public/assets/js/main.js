@@ -150,7 +150,6 @@ function update_users_list() {
   const users_list_element = document.getElementById('users_list')
   users_list_element.innerHTML = ''
   users
-    .push(user)
     .sort((a, b) => b.score - a.score)
     .forEach((u) => {
       const li_element = document.createElement('li')
